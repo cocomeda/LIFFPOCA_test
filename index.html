@@ -42,14 +42,16 @@
             }
         }
 
-        // Automatically call initLiff() when the page is loaded
-        initLiff();
+        // Load LIFF SDK and then call initLiff() when the page is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const script = document.createElement('script');
+            script.src = 'https://static.liff.line.me/versions/2.11.0/sdk.js';
+            script.onload = initLiff;
+            document.head.appendChild(script);
+        });
     </script>
-    <script src="https://static.liff.line.me/versions/2.11.0/sdk.js"></script>
 </body>
 </html>
-
-
 
 
 
