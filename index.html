@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>LINE LIFF App</h1>
+    <p id="result"></p>
 
     <script>
         async function getUserId() {
@@ -20,14 +21,15 @@
 
                 // Use the received user ID to change LIFF display
                 if (data.userId) {
-                    alert('User ID: ' + data.userId);
+                    document.getElementById('result').innerText = 'Success! User ID: ' + data.userId;
                     // Customize LIFF display based on user ID
                     // Add your logic here
                 } else {
-                    alert('Failed to get user ID');
+                    document.getElementById('result').innerText = 'Failed to get user ID';
                 }
             } catch (error) {
                 console.error('Error:', error.message);
+                document.getElementById('result').innerText = 'Error: ' + error.message;
             }
         }
 
@@ -37,6 +39,8 @@
     <script src="https://static.liff.line.me/versions/2.11.0/sdk.js"></script>
 </body>
 </html>
+
+
 
 
 
