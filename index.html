@@ -10,9 +10,18 @@
     <p id="result"></p>
 
     <script>
+        async function initLiff() {
+            try {
+                await liff.init({ liffId: '2001059289-X2m74PYZ' });
+                getUserId();
+            } catch (error) {
+                console.error('Error initializing LIFF:', error.message);
+                document.getElementById('result').innerText = 'Error initializing LIFF: ' + error.message;
+            }
+        }
+
         async function getUserId() {
             try {
-                const liff = await liff.init({ liffId: '2001059289-X2m74PYZ' });
                 const idToken = liff.getIDToken();
                 
                 // Send ID token to GAS API
@@ -33,13 +42,12 @@
             }
         }
 
-        // Automatically call getUserId() when the page is loaded
-        getUserId();
+        // Automatically call initLiff() when the page is loaded
+        initLiff();
     </script>
     <script src="https://static.liff.line.me/versions/2.11.0/sdk.js"></script>
 </body>
 </html>
-
 
 
 
