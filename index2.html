@@ -11,7 +11,7 @@
 
 <script>
     // LIFFの初期化
-    liff.init({ liffId: 'YOUR_LIFF_ID' }, () => {
+    liff.init({ liffId: '2001059289-X2m74PYZ' }, () => {
         if (liff.isLoggedIn()) {
             // ユーザーがログインしている場合
             sendIdTokenToGAS();
@@ -27,7 +27,7 @@
         
         // IDトークンをGASに送信
         $.ajax({
-            url: 'YOUR_GAS_ENDPOINT', // Google Apps Scriptのエンドポイントを指定
+            url: 'https://script.google.com/macros/s/AKfycbzaTjrS7utZdJselk9_R3nOWDeq3sE_2nbVyz_DpVTCRYwizxFyjylRdK29uCWZCMm6ag/exec', // Google Apps Scriptのエンドポイントを指定
             type: 'POST',
             data: { idToken: idToken },
             success: function(response) {
