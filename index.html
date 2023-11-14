@@ -40,7 +40,7 @@
         
         // IDトークンをGASに送信
         $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbz_FICjBMQCZU3IhibmeuHuvDZIQHaDe1eYUoUePk9ZGp9UnKHcPlukFfJd8GBVhfbdEw/exec', // Google Apps Scriptのエンドポイントを指定
+            url: 'https://script.google.com/macros/s/AKfycbyY0tp1_XOaw_kBvb2gaDe6Df5JNb3nTbgizgoHEd9SELDpTUMTHhd3SqD86zIdyXs7/exec', // Google Apps Scriptのエンドポイントを指定
             type: 'POST',
             data: { idToken: idToken },
             success: function(response) {
@@ -100,7 +100,7 @@
             // 例: データを段落要素に挿入
             const paragraph2 = document.createElement("p");
 
-            paragraph2.textContent = `現在のポイント： ${data} pt`;
+            paragraph2.textContent = `現在のポイント： ${data.age} pt`;
             container2.appendChild(paragraph2);
         }
 
