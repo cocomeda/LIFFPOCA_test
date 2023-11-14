@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFF with ID Token</title>
+    <title>ポイントカード</title>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <script src="./public/card.js"></script>
+     <script src="./public/card.css"></script>
 </head>
 <body>
+ 
+    <div class="card1">
+    
+        <p class="title1">Coco point </p>
+        <div id="name" class="content1"><div id="data-container"></div></div>
+        <div id="point" class="content2"><div id="data-container2"></div>
 
+<div id="fixed">
+© Coco medaka3
+</div>
+
+    
+    
 <script>
     // LIFFの初期化
     liff.init({ liffId: '2001059289-X2m74PYZ' }, () => {
@@ -49,6 +63,15 @@
         messageElement.textContent = message;
         document.body.appendChild(messageElement);
     }
+
+
+
+
+
+
+
+
+    
 </script>
 
 </body>
