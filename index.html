@@ -1,57 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINE LIFF App</title>
-</head>
-<body>
-    <h1>LINE LIFF App</h1>
-    <p id="result"></p>
-
-    <script>
-        async function initLiff() {
-            try {
-                await liff.init({ liffId: '2001059289-X2m74PYZ' });
-                getUserId();
-            } catch (error) {
-                console.error('Error initializing LIFF:', error.message);
-                document.getElementById('result').innerText = 'Error initializing LIFF: ' + error.message;
-            }
-        }
-
-        async function getUserId() {
-            try {
-                const idToken = liff.getIDToken();
-                
-                // Send ID token to GAS API
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwIFe5xU0TBW5FrgCZ44J2uBV-OwLKdX4jTnMRMeecGoVJFhMtOit_0zYZy3faPoamH/exec?idToken=' + idToken);
-                const data = await response.json();
-
-                // Use the received user ID to change LIFF display
-                if (data.userId) {
-                    document.getElementById('result').innerText = 'Success! User ID: ' + data.userId;
-                    // Customize LIFF display based on user ID
-                    // Add your logic here
-                } else {
-                    document.getElementById('result').innerText = 'Failed to get user ID';
-                }
-            } catch (error) {
-                console.error('Error:', error.message);
-                document.getElementById('result').innerText = 'Error: ' + error.message;
-            }
-        }
-
-        // Load LIFF SDK and then call initLiff() when the page is loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            const script = document.createElement('script');
-            script.src = 'https://static.liff.line.me/versions/2.11.0/sdk.js';
-            script.onload = initLiff;
-            document.head.appendChild(script);
+// LIFF初期化
+liff.init({
+  liffId: '2001059289-X2m74PYZ' // ご自身のLIFFアプリのIDに置き換えてください
+})
+  .then(() => {
+    // LIFF初期化成功時に実行されるコード
+    // IDトークンを取得
+    return liff.getIDToken();
+  })
+  .then(idToken => {
+    // IDトークンをGoogle Apps Scriptに送信
+    return fetch('https://script.google.com/macros/s/AKfycbwzg_iHmyiY3iP_A5BwBN0KT0VNEJeKfTwoFq24xvQM37Ax1zE9UmR9NLgj-jT4TvtxjA/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ idToken }),
+    });
+  })
+  .then(response => response.json())
+  .then(result => {
+    // Google Apps Scriptの処理結果をLIFFで表示
+    if (result.success) {
+      liff.sendMessages([
+        {
+          type: 'text',
+          text: 'IDトークンの送信に成功しました。',
+        },
+      ])
+        .then(() => {
+          liff.closeWindow();
         });
-    </script>
-</body>
-</html>
+    } else {
+      liff.sendMessages([
+        {
+          type: 'text',
+          text: 'IDトークンの送信に失敗しました。',
+        },
+      ])
+        .then(() => {
+          liff.closeWindow();
+        });
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    // エラーが発生した場合の処理
+  });
 
 
 
@@ -59,3 +53,5 @@
 
 
 
+
+   
