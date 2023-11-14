@@ -1,67 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-    
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LIFF App</title>
-
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFF with ID Token</title>
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="./public/card.js"></script>
- <script src="index.js"></script>
- <script src="liff.js"></script>
-
-    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-  <h1>LIFF App</h1>
-  <p>Click the button to send ID token to Google Apps Script.</p>
 
-  <button onclick="sendIdToken()">Send ID Token</button>
-
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script>
-    // LIFF初期化
-    liff.init({
-      liffId: 'YOUR_LIFF_APP_ID' // ご自身のLIFFアプリのIDに置き換えてください
+<script>
+    // LIFFの初期化
+    liff.init({ liffId: '2001059289-X2m74PYZ' }, () => {
+        if (liff.isLoggedIn()) {
+            // ユーザーがログインしている場合
+            sendIdTokenToGAS();
+        } else {
+            // ログインが必要な場合、ログインページを表示
+            liff.login();
+        }
     });
 
-    // IDトークンをGoogle Apps Scriptに送信する関数
-    function sendIdToken() {
-      liff.getIDToken()
-        .then(idToken => {
-          // IDトークンをGoogle Apps Scriptに送信
-          fetch('YOUR_GAS_ENDPOINT', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
+    // IDトークンをGASに送信する関数
+    function sendIdTokenToGAS() {
+        const idToken = liff.getIDToken();
+        
+        // IDトークンをGASに送信
+        $.ajax({
+            url: 'https://script.google.com/macros/s/AKfycbzaTjrS7utZdJselk9_R3nOWDeq3sE_2nbVyz_DpVTCRYwizxFyjylRdK29uCWZCMm6ag/exec', // Google Apps Scriptのエンドポイントを指定
+            type: 'POST',
+            data: { idToken: idToken },
+            success: function(response) {
+                // 成功時の処理
+                console.log(response);
+                alert('ID Token sent successfully to GAS!');
             },
-            body: JSON.stringify({ idToken }),
-          })
-            .then(response => response.json())
-            .then(result => {
-              // Google Apps Scriptの処理結果をアラートで表示
-              alert(result.success ? 'ID Token sent successfully.' : 'Failed to send ID Token.');
-            })
-            .catch(error => {
-              console.error(error);
-              alert('Error during ID Token sending.');
-            });
-        })
-        .catch(error => {
-          console.error(error);
-          alert('Error retrieving ID Token.');
+            error: function(error) {
+                // エラー時の処理
+                console.error(error);
+                alert('Failed to send ID Token to GAS.');
+            }
         });
     }
-  </script>
+</script>
+
 </body>
 </html>
-    
-
-
 
    
