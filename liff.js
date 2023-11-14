@@ -9,7 +9,7 @@ liff.init({
   })
   .then(idToken => {
     // IDトークンをGoogle Apps Scriptに送信
-    return fetch('https://script.google.com/macros/s/AKfycbwzg_iHmyiY3iP_A5BwBN0KT0VNEJeKfTwoFq24xvQM37Ax1zE9UmR9NLgj-jT4TvtxjA/exec', {
+    return fetch('https://script.google.com/macros/s/AKfycbw4gh1ZhPeSlflX9LmIJQbY_PGIfuDgvY0Bt7NGISfNRCtrgNSCXcNfwLMkw8IevvYMag/exec', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
