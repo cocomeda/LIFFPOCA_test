@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFF with ID Token</title>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<script>
+    // LIFFの初期化
+    liff.init({ liffId: 'YOUR_LIFF_ID' }, () => {
+        if (liff.isLoggedIn()) {
+            // ユーザーがログインしている場合
+            sendIdTokenToGAS();
+        } else {
+            // ログインが必要な場合、ログインページを表示
+            liff.login();
+        }
+    });
+
+    // IDトークンをGASに送信する関数
+    function sendIdTokenToGAS() {
+        const idToken = liff.getIDToken();
+        
+        // IDトークンをGASに送信
+        $.ajax({
+            url: 'YOUR_GAS_ENDPOINT', // Google Apps Scriptのエンドポイントを指定
+            type: 'POST',
+            data: { idToken: idToken },
+            success: function(response) {
+                // 成功時の処理
+                console.log(response);
+                displayMessage(response); // レスポンスメッセージを表示
+            },
+            error: function(error) {
+                // エラー時の処理
+                console.error(error);
+                alert('Failed to send ID Token to GAS.');
+            }
+        });
+    }
+
+    // メッセージを表示する関数
+    function displayMessage(message) {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        document.body.appendChild(messageElement);
+    }
+</script>
+
+</body>
+</html>
