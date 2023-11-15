@@ -28,9 +28,10 @@
 }
 
 .content2 {
-	padding: 10px;
+	padding: 5px;
 	color: #666;
-	text-align: right;
+	text-align: center;
+                  font-size: 10vw;
 }
 
 
