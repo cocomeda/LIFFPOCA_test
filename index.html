@@ -86,23 +86,22 @@
      //   }
 
         // 取得したデータをHTMLに表示する関数
-        function displayData(data) {
-            const container = document.getElementById("data-container");
-            // データを表示するための処理をここに追加
-            // 例: データを段落要素に挿入
-            const paragraph = document.createElement("p");
+function displayData(data) {
+  // JSON 形式の文字列を JavaScript オブジェクトに変換
+  const jsonData = JSON.parse(data);
 
-            paragraph.textContent = `現在のポイント： ${data[0].age}pt`;
-            container.appendChild(paragraph);
+  const container = document.getElementById("data-container");
+  const container2 = document.getElementById("data-container2");
 
-            const container2 = document.getElementById("data-container2");
-            // データを表示するための処理をここに追加
-            // 例: データを段落要素に挿入
-            const paragraph2 = document.createElement("p");
+  // データを表示するための処理
+  const paragraph = document.createElement("p");
+  paragraph.textContent = `現在のポイント： ${jsonData.name}pt`;
+  container.appendChild(paragraph);
 
-            paragraph2.textContent = `現在のポイント： ${data.age} pt`;
-            container2.appendChild(paragraph2);
-        }
+  const paragraph2 = document.createElement("p");
+  paragraph2.textContent = `現在のポイント： ${jsonData.age}pt`;
+  container2.appendChild(paragraph2);
+}
 
 
 
