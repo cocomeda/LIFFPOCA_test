@@ -11,9 +11,9 @@
 }
 
 .title1 {
-	border-radius: 2px 2px 0px 0px;
+	border-radius: 1vw 1vw 0vw 0vw;
                   font-size: 4vw;
-	padding: 15px;
+	padding: 2vw;
 	text-align: center;
 	color: #444;
 	background-color: #1dcd00;
