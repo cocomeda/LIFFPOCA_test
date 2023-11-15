@@ -40,7 +40,7 @@
         
         // IDトークンをGASに送信
         $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbz-yf32MfGTvTuLNpauSpwZjBnxAbpvObDlkWLoDQCLwaPXJCFqAsxYpDOtVadnTLYlLQ/exec', // Google Apps Scriptのエンドポイントを指定
+            url: 'https://script.google.com/macros/s/AKfycbxVTVyFcQ_tJ6fQtsWnbI_KY7HWDOpZPcE_jUmvkZQUDU69F4XAj2e0Y9b64BAlmgY_GA/exec', // Google Apps Scriptのエンドポイントを指定
             type: 'POST',
             data: { idToken: idToken },
             success: function(response) {
@@ -99,11 +99,9 @@ function displayData(data) {
   container.appendChild(paragraph);
 
   const paragraph2 = document.createElement("p");
-  paragraph2.textContent = `現在のポイント： ${jsonData.age} pt`;
+  paragraph2.textContent = `現在のポイント： ${jsonData.score} pt`;
   container2.appendChild(paragraph2);
 }
-
-
 
 
 
