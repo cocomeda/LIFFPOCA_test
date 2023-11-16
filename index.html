@@ -9,8 +9,14 @@
     <script src="index.js"></script>
 
     <style>
-        #loading { display: block; }
-        #content { display: none; }
+        #loading {
+            display: block;
+            text-align: center;
+            padding: 20px;
+        }
+        #content {
+            display: none;
+        }
     </style>
 
     <link rel="stylesheet" type="text/css" href="./public/card.css">
@@ -18,7 +24,7 @@
 <body>
     <div id="loading">
         <!-- ローディング画像をここに追加 -->
-        Loading...
+        <img src="loading.gif" alt="Loading...">
     </div>
 
     <div id="content" class="card1">
@@ -47,6 +53,9 @@
         // IDトークンをGASに送信する関数
         function sendIdTokenToGAS() {
             const idToken = liff.getIDToken();
+
+            // ローディング画像表示
+            $('#loading').show();
 
             // IDトークンをGASに送信
             $.ajax({
