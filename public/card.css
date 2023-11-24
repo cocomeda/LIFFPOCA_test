@@ -46,10 +46,6 @@
 
 
 
-
-
-
-
 #fixed {
 position: fixed; /* 要素の位置を固定する */
 
@@ -63,5 +59,41 @@ color:white; /* フォントの色を指定する */
 text-align: center;
 
 }
+
+
+
+
+
+
+ .image-container {
+      position: relative;
+      display: inline-block;
+      width: 300px; /* 画像サイズに合わせて適切な幅を設定してください */
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: black;
+      font-size: 24px; /* 適切なフォントサイズに設定してください */
+      font-weight: bold;
+      font-family: 'Arial', sans-serif; /* 適切なフォントを指定してください */
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
