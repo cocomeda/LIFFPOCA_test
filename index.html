@@ -22,10 +22,17 @@
 
 
     .image-container {
-      position: relative;
-      display: inline-block;
-      text-align: center; /* 中央揃えにするために追加 */
+       position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+  img {
+        max-width: 100%; /* 画像が親要素をはみ出さないようにするため */
+        max-height: 100%; /* 画像が親要素をはみ出さないようにするため */
+    }
+        
     /* 以下の部分で画像の大きさを設定 */
     .image-container img {
 　　　　　 width: 90%;
