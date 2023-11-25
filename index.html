@@ -19,38 +19,37 @@
         }
 
 
-
-
     .image-container {
-       position: relative;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-  img {
-        max-width: 100%; /* 画像が親要素をはみ出さないようにするため */
-        max-height: 100%; /* 画像が親要素をはみ出さないようにするため */
+    img {
+        width: 100%; /* 画面に対して100%の幅にする */
+        height: auto; /* アスペクト比を保持して高さを自動調整 */
     }
-        
-    /* 以下の部分で画像の大きさを設定 */
+
+/* 以下の部分で画像の大きさを設定 */
     .image-container img {
 　　　　　 width: 90%;
-   　　　 height: auto;
-
-        
+   　　　 height: auto;        
       }
-        
+
 
     .overlay-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: black;
-      font-size: 30px;
-      font-weight: bold;
-    }      
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+        
     </style>
 
     <link rel="stylesheet" type="text/css" href="./public/card.css">
