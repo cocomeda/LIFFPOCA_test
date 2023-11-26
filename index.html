@@ -12,28 +12,32 @@
         #loading {
             display: block;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
         }
         #content {
             display: none;
         }
 
+        .image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .image-container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        img {
+            width: 80%;
+            height: auto;
+        }
 
-    img {
-        width: 80%; /* 画面に対して100%の幅にする */
-        height: auto; /* アスペクト比を保持して高さを自動調整 */
-    }
-
-        
-
-        
+        .overlay-text {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black;
+            font-weight: bold;
+        }
     </style>
 
     <link rel="stylesheet" type="text/css" href="./public/card.css">
@@ -43,30 +47,16 @@
         <!-- ローディング画像をここに追加 -->
         <img src="loading.gif" alt="Loading...">
     </div>
-
-    <div id="content" class="card1">
-        <p class="title1" id="data-container"></p>
-        
-        <div id="name" class="content1"></div>
-        <div class="content0">現在のポイント</div>
-        
-
-
-  <div class="image-container">
-    <img src="kumo1.png" alt="Your Image">
-    <div class="overlay-text">
-        
-
-<div id="point" class="content2"><div id="data-container2"></div></div>
-
-        
-　</div>
-  </div>
-
-            
-
-        <div id="fixed">
-            © Coco medaka3
+    
+    <div id="content">
+        <div class="card1">
+            <div class="title1">
+                <div id="name" class="content1">
+                    <div id="data-container"></div>
+                </div>
+            </div>
+            <div class="bdy">現在の保有ポイント</div>
+            <p class="bottom1">現在のランク<span style="float: right;">シルバー</span></p>
         </div>
     </div>
 
@@ -125,15 +115,10 @@
             const jsonData = JSON.parse(data);
 
             const container = document.getElementById("data-container");
-            const container2 = document.getElementById("data-container2");
 
             const paragraph = document.createElement("p");
             paragraph.textContent = `${jsonData.name} 様`;
             container.appendChild(paragraph);
-
-            const paragraph2 = document.createElement("p");
-            paragraph2.textContent = `${jsonData.score} `;　// pt
-            container2.appendChild(paragraph2);
         }
     </script>
 </body>
